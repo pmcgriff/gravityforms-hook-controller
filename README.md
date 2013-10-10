@@ -1,6 +1,6 @@
 ## GravityForms Hook Controller
 
-GravityForms is a WordPress plugin that allows for creating and managing forms via a simple User Interface. It also includes a Developer API that follows WordPress' hook/filter implementation. This plugin provides an object oriented implementation of the GravityForms API.
+GravityForms is a WordPress plugin that allows for creating and managing forms via a simple User Interface. It also includes a Developer API that follows WordPress' hook/filter implementation. This plugin provides an object oriented implementation of the GravityForms API. **You need to know how to code to use this.**
 
 ### Getting Started
 
