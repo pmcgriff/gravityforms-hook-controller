@@ -1,0 +1,60 @@
+<table class="calculator">
+  <thead>
+    <tr>
+      <th>
+        Products
+      </th>
+      <th>HECM Adjustable</th>
+      <th>HECM Fixed</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <th>Liens/Mortgage to pay off</th>
+      <td>{{number_format_or_zero(lead.getMortgageBalance())}}</td>
+      <td{% if not lead.getFixedCalculation().getIsAvailable() %} rowspan="4"{% endif %}>
+        {% if lead.getFixedCalculation().getIsAvailable() %}
+          {{number_format_or_zero(lead.getMortgageBalance())}}
+        {% else %}
+          Talk to a banker!
+        {% endif %}
+      </td>
+    </tr>
+
+    <tr>
+      <th>Available Cash Out<br />First 12 Months</th>
+      <td>{{ number_format_or_zero(lead.getAdjustableCalculation().getAvailableDisbursementLimit()) }}</td>
+      {% if lead.getFixedCalculation().getIsAvailable() %}
+      <td>{{ number_format_or_na(lead.getFixedCalculation().getAvailableDisbursementLimit()) }}</td>
+      {% endif %}
+    </tr>
+
+    <tr>
+      <th>Available Cash Out<br />After 12 Months</th>
+      <td>{{ number_format_or_zero(lead.getAdjustableCalculation().getExpectedReserveFunds()) }}</td>
+      {% if lead.getFixedCalculation().getIsAvailable() %}
+      <td>{{ number_format_or_zero(lead.getFixedCalculation().getExpectedReserveFunds()) }}</td>
+      {% endif %}
+    </tr>
+
+    <tr>
+      <th>Cash Out Options</th>
+      <td>Lump Sum, Line of Credit, Monthly Payment, Combination of Options.</td>
+      {% if lead.getFixedCalculation().getIsAvailable() %}
+      <td>Lump Sum</td>
+      {% endif %}
+    </tr>
+
+  </tbody>
+</table>
+
+<style type="text/css">
+.entry.wide {width: 680px;}
+/*#desc p {font: bold 18px Asap !important; color: #c21f2f;} */
+/*#desc small {font: italic 15px Asap !important;}*/
+.calculator {border: solid 1px #c2c2c2; width: 674px;} 
+.calculator td, .calculator th {border-right: solid 1px #c2c2c2; text-align: left; padding: 10px !important; border-bottom: solid 1px #c2c2c2; font: 15px Asap !important;}
+.calculator thead th {background: #6da242; font: bold 16px Asap !important; text-align: left; padding: 6px 10px 6px 10px !important; color: #fff;}
+
+</style>

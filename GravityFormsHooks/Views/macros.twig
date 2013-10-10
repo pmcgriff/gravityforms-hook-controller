@@ -1,0 +1,19 @@
+{% macro clientAge(age) %}
+  {% if age >= 62 %} {{ age }} {% else %} 62 {% endif %}
+{% endmacro %}
+
+{% macro result(lead) %}
+  {% import "results.twig" as results %}
+
+  {% if lead.getLeadCode() == 'CALCULATION_FAILED' %}
+    {{ results.CALCULATION_FAILED(lead) }}
+  {% elseif lead.getLeadCode() == 'NOT_QUALIFIED' %}
+    {{ results.NOT_QUALIFIED(lead) }}
+  {% elseif lead.getLeadCode() == 'QUALIFIED_CASH_REQUIRED' %}
+    {{ results.QUALIFIED_CASH_REQUIRED(lead) }}
+  {% elseif lead.getLeadCode() == 'QUALIFIED_WITH_MORTGAGE' %}
+    {{ results.QUALIFIED_WITH_MORTGAGE(lead) }}
+  {% elseif lead.getLeadCode() == 'QUALIFIED_NO_MORTGAGE' %}
+    {{ results.QUALIFIED_NO_MORTGAGE(lead) }}
+  {% endif %}
+{% endmacro %}

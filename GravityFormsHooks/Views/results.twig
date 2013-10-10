@@ -1,0 +1,30 @@
+{% macro CALCULATION_FAILED(lead) %}
+  An error has occurred. Please try again later.
+{% endmacro %}
+
+{% macro NOT_QUALIFIED(lead) %}
+  <p>Based on the information provided, a reverse mortgage may not be suitable, but there are other refinance options available through out partner, Quicken Loans.</p>
+
+  <p><small>Based on a ${{ number_format(lead.getHomeValue()) }} home value and a ${{ number_format(lead.getMortgageBalance()) }} mortgage balance at the age of {{ lead.getClientAge() }}, a reverse mortgage may not be the best option.</small></p>
+{% endmacro %}
+
+{% macro QUALIFIED_CASH_REQUIRED(lead) %}
+  {% import "macros.twig" as util %}
+  <p>You can eliminate your monthly mortgage payment. Find out how and what is required by calling XXX-XXX-XXXX and speaking wth a One Reverse Mortgage licensed expert.</p>
+
+  <p><small>Based on a ${{ number_format(lead.getHomeValue()) }} home value and a ${{ number_format(lead.getMortgageBalance()) }} mortgage balance at the age of {{ util.clientAge(lead.clientAge()) }}.</small></p>
+{% endmacro %}
+
+{% macro QUALIFIED_NO_MORTGAGE(lead) %}
+  {% import "macros.twig" as util %}
+  <p>You may qualify for {{ number_format_or_na(lead.getBiggestMaxPayout()) }} in tax-free money!</p>
+
+  <p><small>Based on a ${{ number_format(lead.getHomeValue()) }} home value at the age of {{ util.clientAge(lead.clientAge()) }}, you could qualify for:</small></p>
+{% endmacro %}
+
+{% macro QUALIFIED_WITH_MORTGAGE(lead) %}
+  {% import "macros.twig" as util %}
+  <p>Eliminate your current monthly mortgage payment and get {{ number_format_or_na(lead.getBiggestMaxPayout()) }} in tax-free money!</p>
+
+  <p><small>Based on a ${{ number_format(lead.getHomeValue()) }} home value and a ${{ number_format(lead.getMortgageBalance()) }} mortgage balance at the age of {{ util.clientAge(lead.clientAge()) }}, you could qualify for:</small></p>
+{% endmacro %}
